@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 
 // Components
 import AuthPage from '../AuthPage/AuthPage';
+import AllTrailsPage from '../AllTrailsPage/AllTrailsPage';
 import NewTrailPage from '../NewTrailPage/NewTrailPage';
 import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage';
 import NavBar from '../../components/NavBar/NavBar';

@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 
 // Components
 import AuthPage from '../AuthPage/AuthPage';
-import NewOrderPage from '../NewOrderPage/NewOrderPage';
+import NewTrailPage from '../NewTrailPage/NewTrailPage';
 import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage';
 import NavBar from '../../components/NavBar/NavBar';
 
@@ -23,7 +23,7 @@ export default function App() {
           <NavBar user={user} setUser={setUser} />
             <Routes>
               {/* Route components in here */}
-              <Route path="/orders/new" element={<NewOrderPage />} />
+              <Route path="/trails/new" element={<NewTrailPage />} />
               <Route path="/orders" element={<OrderHistoryPage />} />
             </Routes>
           </>

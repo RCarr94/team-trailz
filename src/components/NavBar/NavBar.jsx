@@ -10,12 +10,25 @@ export default function NavBar({ user, setUser }) {
 
   return (
     <nav>
-      <Link to="/orders">Order History</Link>
+      <Link to="/about">About TeamTrailz</Link>
       &nbsp; | &nbsp;
-      <Link to="/orders/new">New Order</Link>
-      &nbsp; &nbsp; <span className="name">Hey there {user.name}!</span>
-      &nbsp; &nbsp; <Link to="" onClick={handleLogOut}>Log Out</Link>
-
-    </nav>
+      <Link to="/">Home</Link>
+      &nbsp; | &nbsp;
+      { user ?
+        <>
+          <Link to="/trails/new">Add A Trail</Link>
+          &nbsp; | &nbsp;
+          <span className="name">Hey there {}!</span>
+          &nbsp; | &nbsp;
+          <Link to="" onClick={handleLogOut}>Log Out</Link>
+        </>
+        :
+        <>
+          <Link to="/signin">Sign In</Link>
+          &nbsp; | &nbsp;
+          <Link to="/register">Register</Link>
+        </>
+      }
+      </nav>
   );
 }

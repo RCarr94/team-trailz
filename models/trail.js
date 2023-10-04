@@ -1,4 +1,6 @@
-const Schema = require('mongoose').Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
 
 const trailSchema = new Schema({
     name: String,
@@ -12,4 +14,4 @@ const trailSchema = new Schema({
     timestamps: true
 });
 
-module.exports = trailSchema;
+module.exports = mongoose.model('Trail', trailSchema);

@@ -25,6 +25,7 @@ app.use(require('./config/checkToken'));
 
 // API routes here
 app.use('/api/users', userRouter)
+// app.use('', require('./routes/api/trails'));
 
 // "Catch all" route
 app.get('/*', function(req, res) {

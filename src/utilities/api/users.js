@@ -26,7 +26,7 @@ export function signUp(userData){
 }
 
 export function login(credentials) {
-    return sendRequest(`${BASE_URL}/login`, 'POST', credentials);
+    return sendRequest(`${BASE_URL}/signin`, 'POST', credentials);
 //     // Fetch uses an options object as a second arg to make requests
 //     // other than basic GET requests, include data, headers, etc.
 //     const options = {

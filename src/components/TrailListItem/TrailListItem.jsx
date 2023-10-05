@@ -1,14 +1,14 @@
 
 
-export default function TrailListItem({ trailItem }) {
+export default function TrailListItem({ trailTestItem }) {
   return (
     <div>
-      <h2>{trailItem.name}</h2>
-      <p>{trailItem.location}</p>
-      <p>{trailItem.length}</p>
-      <p>{trailItem.rating}</p>
-      <p>{trailItem.description}</p>
-      <p>{trailItem.comments}</p>
+      <h2>{trailTestItem.name}</h2>
+      <p>{trailTestItem.location}</p>
+      <p>{trailTestItem.length}</p>
+      <p>{trailTestItem.rating}</p>
+      <p>{trailTestItem.description}</p>
+      <p>{trailTestItem.comments}</p>
     </div>
   );
 }

@@ -9,13 +9,13 @@ import TrailList from "../../components/TrailList/TrailList"
 export default function HomePage() {
   const [trailItems, setTrailItems] = useState([]);
 
-  useEffect(function() {
-    async function getTrails() {
-      const trails = await trailsAPI.getAll();
-      setTrailItems(trails);
-    }
-    getTrails();
-  }, []);
+  // useEffect(function() {
+  //   async function getTrails() {
+  //     const trails = await trailsAPI.getAll();
+  //     setTrailItems(trails);
+  //   }
+  //   getTrails();
+  // }, []);
 
   return (
     <main>

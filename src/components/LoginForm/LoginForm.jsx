@@ -1,16 +1,24 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { login } from '../../utilities/services/users'
+import { Navigate } from 'react-router-dom'
 
 const defaultState = {
-    name: '',
+    email: '',
     password: '',
     error: ''
 }
 
 export default function LoginForm({ setUser }) {
     const [formData, setFormData] = useState(defaultState)
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
 
     const { email, password, error } = formData;
+
+    useEffect(() => {
+        setIsLoggedIn(false);
+    }, []); 
+
+    if (isLoggedIn) return <Navigate to="/" />
 
     const handleSubmit = async (e) => {
         // when we submit we basically just grab whatever we have in
@@ -21,11 +29,12 @@ export default function LoginForm({ setUser }) {
             const {  password, email } = formData;
             const data = {  password, email }
 
-            const user = await login(data)
+            const user = await login(formData)
             // as soon as we get the decoded data from the creat account api call
             // (derived fromt he jwt in local storage), we can update app.js to store
             // user in state
             setUser(user)
+            setIsLoggedIn(true)
         } catch (err) {
             setFormData({
                 ...formData,
@@ -35,8 +44,7 @@ export default function LoginForm({ setUser }) {
     }
 
     function handleChange(evt) {
-        // Replace with new object and use a computed property
-        // to update the correct property
+
         const newFormData = {
             ...formData, // use the existing formData
             [evt.target.name]: evt.target.value, // override whatever key with the current fieldd's value

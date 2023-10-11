@@ -5,7 +5,15 @@ async function index(req, res) {
   res.json(trails);
 }
 
+async function getById(req, res) {
+  const id = req.params.id;
+  const trail = await Trail.findById(id);
+    res.json(trail);
+
+}
+
 
 module.exports = {
-  index
+  index, 
+  getById
 }

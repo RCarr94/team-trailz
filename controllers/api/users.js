@@ -1,29 +1,29 @@
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 const User = require('../../models/user');
-const { createJWT, isValidPassword } = require('../../helpers/auth')
+const { createJWT } = require('../../helpers/auth')
 
 async function create (req, res, next){
     try{
         const user = await User.create(req.body);
-        const token = createJWT(user)
-        res.json(token)
-    }catch(err){
+        const token = createJWT(user);
+        res.json(token);
+    }catch(err) {
         res.status(400).json(err);
     }
 }
 
-async function login(req, res, next) {
+async function login(req, res) {
     try {
         const pw = req.body.password;
         const email = req.body.email;
 
-        const user = await User.findOne({email})
+        const user = await User.findOne({email});
+        if (!user) throw new Error();
 
-        if(user && isValidPassword(pw, user.password)){
-            const token = createJWT(user)
-            res.json(token)
-        }else{
-            res.status(400).json("Invalid Credentials");
-        }
+        const match = await bcrypt.compare(pw, user.password);
+        if (!match) throw new Error();
+        res.json(createJWT(user));
     } catch (err) {
         res.status(400).json("Invalid Credentials");
     }

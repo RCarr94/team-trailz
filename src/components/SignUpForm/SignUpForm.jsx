@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { signUp } from '../../utilities/services/users'
+import { Navigate } from 'react-router-dom'
+import { set } from 'mongoose';
 
 const defaultState = {
     name: '',
@@ -11,8 +13,15 @@ const defaultState = {
 
 export default function SignUpForm({ setUser }){
     const [formData, setFormData] = useState(defaultState)
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const { name, email, password, confirm, error } = formData;
+
+    useEffect(() => {
+      setIsLoggedIn(false);
+    }, []); 
+
+    if (isLoggedIn) return <Navigate to="/" />;
 
     const handleSubmit = async (e) =>{
         // when we submit we basically just grab whatever we have in
@@ -28,6 +37,7 @@ export default function SignUpForm({ setUser }){
             // (derived fromt he jwt in local storage), we can update app.js to store
             // user in state
             setUser(user)
+            setIsLoggedIn(true)
         }catch (err) {
             setFormData({
                 ...formData,

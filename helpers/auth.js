@@ -10,14 +10,6 @@ function createJWT(user) {
     );
 }
 
-async function isValidPassword(myPlaintextPassword, hash){
-    const match = await bcrypt.compare(myPlaintextPassword, hash);
-
-    return match
-}
-
-
 module.exports = {
-    createJWT,
-    isValidPassword
+    createJWT
 }

@@ -9,6 +9,7 @@ import SignUpForm from '../../components/SignUpForm/SignUpForm';
 
 // Pages
 import HomePage from '../HomePage/HomePage';
+import AboutPage from '../AboutPage/AboutPage';
 
 // Helpers
 import { getUser } from '../../utilities/services/users';
@@ -23,6 +24,7 @@ export default function App() {
       <>
         <NavBar user={user} setUser={setUser} />
           <Routes>
+            <Route path='/about' element={<AboutPage />}/>
             <Route path='/' element={<HomePage setUser={setUser} />}/>
             <Route path='/signin' element={<LoginForm setUser={setUser} />}/>
             <Route path='/register' element={<SignUpForm setUser={setUser} />}/>

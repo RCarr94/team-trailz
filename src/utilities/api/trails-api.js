@@ -1,5 +1,5 @@
 import sendRequest from '../send-request';
-const BASE_URL = '';
+const BASE_URL = '/api/trails';
 
 export function getAll() {
   return sendRequest(BASE_URL);

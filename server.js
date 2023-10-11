@@ -9,6 +9,7 @@ require('dotenv').config();
 require('./config/database');
 
 const userRouter = require('./routes/api/users')
+const trailRouter = require('./routes/api/trails')
 
 const app = express();
 
@@ -25,7 +26,7 @@ app.use(require('./config/checkToken'));
 
 // API routes here
 app.use('/api/users', userRouter)
-// app.use('', require('./routes/api/trails'));
+app.use('/api/trails', trailRouter);
 
 // "Catch all" route
 app.get('/*', function(req, res) {

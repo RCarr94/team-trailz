@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 
 const trailSchema = new Schema({
-    name: String,
+    trailName: String,
     location: String,
     difficulty: String,
     length: Number,

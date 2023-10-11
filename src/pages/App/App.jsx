@@ -11,6 +11,7 @@ import SignUpForm from '../../components/SignUpForm/SignUpForm';
 import HomePage from '../HomePage/HomePage';
 import AboutPage from '../AboutPage/AboutPage';
 import TrailDetailsPage from '../TrailDetailsPage/TrailDetailsPage';
+import CreateTrailPage from '../CreateTrailPage/CreateTrailPage';
 
 // Helpers
 import { getUser } from '../../utilities/services/users';
@@ -38,6 +39,7 @@ export default function App() {
           <Route path="/signin" element={<LoginForm setUser={setUser} />} />
           <Route path="/register" element={<SignUpForm setUser={setUser} />} />
           <Route path="/trails/:trailName" element={<TrailDetailsPage trailItems={trailTestItems} />} />
+          <Route path='/trails/new' element={<CreateTrailPage trailItems={trailItems} setTrailItems={setTrailItems} />} />
         </Routes>
       </>
     </main>

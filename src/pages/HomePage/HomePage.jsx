@@ -24,12 +24,11 @@ export default function HomePage({ trailItems, trailTestItems }) {
 
 
   return (
-    <main>
-      <h1>hello ryan </h1>
-      <div>
+    <>
+      <div className="w-1/2 mx-auto">
         <SearchFilter trailItems={trailItems} setFilteredData={setFilteredData}/>
-        <TrailList trailItems={filteredData} />
       </div>
-    </main>
+        <TrailList trailItems={filteredData} />
+    </>
   )
 }

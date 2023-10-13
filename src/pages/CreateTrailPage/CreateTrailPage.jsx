@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './CreateTrailPage.css';
 
 const defaultState = {
   trailName: '',

@@ -10,7 +10,7 @@ export default function TrailList({ trailItems }) {
     />
   );
   return (
-    <main>
+    <main className="flex flex-wrap gap-4 justify-evenly">
       {trails}
     </main>
   );

@@ -18,7 +18,7 @@ export default function NavBar({ user, setUser }) {
         <>
           <Link to="/trails/new">Add A Trail</Link>
           &nbsp; | &nbsp;
-          <span className="name">Hey there {}!</span>
+          <span className="name">Hey there!</span>
           &nbsp; | &nbsp;
           <Link to="" onClick={handleLogOut}>Log Out</Link>
         </>

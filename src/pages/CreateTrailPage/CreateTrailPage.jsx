@@ -13,7 +13,7 @@ const defaultState = {
 }
 
 
-export default function CreateTrailPage({ trailItems, setTrailItems, trailTestItems }) {
+export default function CreateTrailPage({ trailItems, setTrailItems }) {
   const [formData, setFormData] = useState(defaultState);
   
   const { trailName, location, difficulty, length, description, image, error } = formData;
@@ -22,7 +22,6 @@ export default function CreateTrailPage({ trailItems, setTrailItems, trailTestIt
     evt.preventDefault();
   
     try {
-      // const newTrail = { trailName, location, difficulty, length, description, image };
       const data = { trailName, location, difficulty, length, description, image };
       const newTrail = await create(data);
 
@@ -116,7 +115,9 @@ export default function CreateTrailPage({ trailItems, setTrailItems, trailTestIt
                 name="difficulty"
                 value={difficulty}
                 onChange={handleChange}
+                required
               >
+                <option value="" disabled hideen>Select a difficulty</option>
                 <option value="easy">Easy</option>
                 <option value="average">Average</option>
                 <option value="challenging">Challenging</option>

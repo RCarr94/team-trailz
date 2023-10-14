@@ -25,7 +25,7 @@ export default function TrailListItem({ trailItem }) {
       <div className="p-6">
         <div className="mb-3 flex items-center justify-between">
           <h5 className="block font-sans text-xl font-medium leading-snug tracking-normal text-blue-gray-900 antialiased">
-            {trailItem.name}, {trailItem.location}
+            {trailItem.trailName}, {trailItem.location}
           </h5>
           <p className="flex items-center gap-1.5 font-sans text-base font-normal leading-relaxed text-blue-gray-900 antialiased">
             <svg
@@ -48,7 +48,7 @@ export default function TrailListItem({ trailItem }) {
         <div className="group mt-8 inline-flex flex-wrap items-center gap-3"></div>
       </div>
       <div className="p-6 pt-1">
-        <Link to={`/trails/${trailItem.name}`}>
+        <Link to={`/trails/${trailItem._id}`}>
           <button
             className="block w-full select-none rounded-lg bg-green-900 py-3.5 px-7 text-center align-middle font-sans text-sm font-bold uppercase text-white shadow-md shadow-green-500/20 transition-all hover:shadow-lg hover:shadow-green-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
             type="button"

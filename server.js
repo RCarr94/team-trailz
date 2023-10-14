@@ -14,6 +14,8 @@ const trailRouter = require('./routes/api/trails')
 const app = express();
 
 app.use(logger('dev'));
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({limit: '25mb', extended: true}));
 app.use(express.json());
 
 if( process.env.NODE_ENV === 'production'){

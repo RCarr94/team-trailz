@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { create } from '../../utilities/api/trails';
 import './CreateTrailPage.css';
+import { set } from 'mongoose';
 
 const defaultState = {
   trailName: '',
@@ -15,24 +16,28 @@ const defaultState = {
 
 export default function CreateTrailPage({ trailItems, setTrailItems }) {
   const [formData, setFormData] = useState(defaultState);
+  const [formReady, setFormReady] = useState(false);
   
   const { trailName, location, difficulty, length, description, image, error } = formData;
   
   async function handleSubmit(evt) {
     evt.preventDefault();
-  
-    try {
-      const data = { trailName, location, difficulty, length, description, image };
-      const newTrail = await create(data);
+    
+    // if (!formReady) {
+      try {
+        const data = { trailName, location, difficulty, length, description, image };
+        const newTrail = await create(data);
 
-      setTrailItems([...trailItems, newTrail]);
-      setFormData(defaultState);
-    } catch (err) {
-      setFormData({
-        ...formData,
-        error: 'Trail creation failed - Try again!'
-      });
-    }
+        setTrailItems([...trailItems, newTrail]);
+        setFormData(defaultState);
+        // setFormReady(false);
+      } catch (err) {
+        setFormData({
+          ...formData,
+          error: 'Trail creation failed - Try again!'
+        });
+      }
+    // }
   }
   
     function handleChange(evt) {
@@ -42,6 +47,21 @@ export default function CreateTrailPage({ trailItems, setTrailItems }) {
         error: ''
       };
       setFormData(newFormData);
+    }
+
+    function handleImgChange(evt) {
+      const reader = new FileReader();
+    
+      reader.onload = function (evt) {
+        const newFormData = {
+          ...formData,
+          image: evt.target.result,
+          error: ''
+        };
+        setFormData(newFormData);
+        // setFormReady(false);
+      };
+      reader.readAsDataURL(evt.target.files[0]);
     }
 
   return (
@@ -100,8 +120,8 @@ export default function CreateTrailPage({ trailItems, setTrailItems }) {
                   className="rounded border-[#e0e0e0] py-2 pr-36 text-base font-medium text-[#07074D]"
                   type="file"
                   name="image"
-                  value={image}
-                  onChange={handleChange}
+                  accept='image/*'
+                  onChange={handleImgChange}
                 />
               </div>
             </div>
@@ -117,7 +137,7 @@ export default function CreateTrailPage({ trailItems, setTrailItems }) {
                 onChange={handleChange}
                 required
               >
-                <option value="" disabled hideen>Select a difficulty</option>
+                <option value="" disabled hidden>Select a difficulty</option>
                 <option value="easy">Easy</option>
                 <option value="average">Average</option>
                 <option value="challenging">Challenging</option>

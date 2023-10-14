@@ -8,6 +8,7 @@ const trailSchema = new Schema({
     difficulty: String,
     length: Number,
     description: String,
+    image: String,
     comments: [{type: Schema.Types.ObjectId, ref: 'Comment'}],
     user: {type: Schema.Types.ObjectId, ref: 'User'}
 }, {

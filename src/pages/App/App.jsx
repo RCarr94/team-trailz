@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import * as trailsAPI from '../../utilities/api/trails';
 
 
 // Components
@@ -27,7 +28,7 @@ const trailTestItems = [
 
 export default function App() {
   const [user, setUser] = useState(getUser());
-  const [trailItems, setTrailItems] = useState(trailTestItems);
+  const [trailItems, setTrailItems] = useState([]);
 
   return (
     <main className="App">
@@ -35,11 +36,14 @@ export default function App() {
         <NavBar user={user} setUser={setUser} />
         <Routes>
           <Route path="/about" element={<AboutPage />} />
-          <Route path="/" element={<HomePage setUser={setUser} trailItems={trailItems} trailTestItems={trailTestItems} />} />
+          <Route path="/" element={<HomePage setUser={setUser} trailItems={trailItems} setTrailItems={setTrailItems} />} />
           <Route path="/signin" element={<LoginForm setUser={setUser} />} />
           <Route path="/register" element={<SignUpForm setUser={setUser} />} />
-          <Route path="/trails/:trailName" element={<TrailDetailsPage trailItems={trailTestItems} />} />
-          <Route path='/trails/new' element={<CreateTrailPage trailItems={trailItems} setTrailItems={setTrailItems} />} />
+          <Route path="/trails/:trailName" element={<TrailDetailsPage trailItems={trailItems} />} />
+          <Route
+            path="/trails/new"
+            element={<CreateTrailPage trailItems={trailItems} setTrailItems={setTrailItems} trailTestItems={trailTestItems} />}
+          />
         </Routes>
       </>
     </main>

@@ -7,4 +7,6 @@ router.get('/', trailsCtrl.index);
 
 router.get('/:id', trailsCtrl.getById);
 
+router.post('/', trailsCtrl.create);
+
 module.exports = router;

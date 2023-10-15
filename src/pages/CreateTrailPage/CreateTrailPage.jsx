@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { create } from '../../utilities/api/trails';
+import { redirect } from 'react-router-dom';
 import './CreateTrailPage.css';
-import { set } from 'mongoose';
+
 
 const defaultState = {
   trailName: '',
@@ -29,6 +30,7 @@ export default function CreateTrailPage({ trailItems, setTrailItems }) {
 
         setTrailItems([...trailItems, newTrail]);
         setFormData(defaultState);
+        return redirect('/');
       } catch (err) {
         setFormData({
           ...formData,

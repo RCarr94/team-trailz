@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import * as trailsAPI from '../../utilities/api/trails';
 
 
@@ -30,8 +30,17 @@ export default function App() {
         <Routes>
           <Route path="/about" element={<AboutPage />} />
           <Route path="/" element={<HomePage setUser={setUser} trailItems={trailItems} setTrailItems={setTrailItems} />} />
-          <Route path="/signin" element={<LoginForm setUser={setUser} />} />
-          <Route path="/register" element={<SignUpForm setUser={setUser} />} />
+          { (!user) ?
+            <>
+              <Route path="/signin" element={<LoginForm setUser={setUser} />} />
+              <Route path="/register" element={<SignUpForm setUser={setUser} />} />
+            </>
+            :
+            <>
+              <Route path="/signin" element={<Navigate to={'/'} />} />
+              <Route path="/register" element={<Navigate to={'/'} />} />
+            </>
+          }
           <Route path="/trails/:trailId" element={<TrailDetailsPage trailItems={trailItems} />} />
           <Route
             path="/trails/new"

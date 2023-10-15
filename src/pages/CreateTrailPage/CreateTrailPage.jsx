@@ -16,28 +16,26 @@ const defaultState = {
 
 export default function CreateTrailPage({ trailItems, setTrailItems }) {
   const [formData, setFormData] = useState(defaultState);
-  const [formReady, setFormReady] = useState(false);
+
   
   const { trailName, location, difficulty, length, description, image, error } = formData;
   
   async function handleSubmit(evt) {
     evt.preventDefault();
     
-    // if (!formReady) {
       try {
         const data = { trailName, location, difficulty, length, description, image };
         const newTrail = await create(data);
 
         setTrailItems([...trailItems, newTrail]);
         setFormData(defaultState);
-        // setFormReady(false);
       } catch (err) {
         setFormData({
           ...formData,
           error: 'Trail creation failed - Try again!'
         });
       }
-    // }
+
   }
   
     function handleChange(evt) {
@@ -59,7 +57,6 @@ export default function CreateTrailPage({ trailItems, setTrailItems }) {
           error: ''
         };
         setFormData(newFormData);
-        // setFormReady(false);
       };
       reader.readAsDataURL(evt.target.files[0]);
     }

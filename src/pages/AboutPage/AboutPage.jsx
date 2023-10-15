@@ -1,5 +1,5 @@
 // import Map from '../../components/Map/Map';
-import GoogleSearchBar from '../../components/GoogleSearchBar/GoogleSearchBar';
+// import GoogleSearchBar from '../../components/GoogleSearchBar/GoogleSearchBar';
 
 
 
@@ -8,7 +8,7 @@ export default function AboutPage() {
     <div>
       HI THERE
       {/* <Map /> */}
-      <GoogleSearchBar />
+      {/* <GoogleSearchBar /> */}
     </div>
   );
 }

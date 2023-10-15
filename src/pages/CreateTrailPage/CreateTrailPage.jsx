@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { create } from '../../utilities/api/trails';
-import { redirect } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './CreateTrailPage.css';
+
+import GoogleSearchBar from '../../components/GoogleSearchBar/GoogleSearchBar';
+
 
 
 const defaultState = {
   trailName: '',
-  location: '',
   difficulty: '',
   length: '',
   description: '',
@@ -17,20 +19,24 @@ const defaultState = {
 
 export default function CreateTrailPage({ trailItems, setTrailItems }) {
   const [formData, setFormData] = useState(defaultState);
+  const [location, setLocation] = useState('');
+  const navigate = useNavigate();
 
   
-  const { trailName, location, difficulty, length, description, image, error } = formData;
-  
+  const { trailName, difficulty, length, description, image, error } = formData;
+
+
+
   async function handleSubmit(evt) {
     evt.preventDefault();
     
       try {
-        const data = { trailName, location, difficulty, length, description, image };
+        const data = { ...formData, location };
         const newTrail = await create(data);
 
         setTrailItems([...trailItems, newTrail]);
         setFormData(defaultState);
-        return redirect('/');
+        navigate('/');
       } catch (err) {
         setFormData({
           ...formData,
@@ -83,17 +89,7 @@ export default function CreateTrailPage({ trailItems, setTrailItems }) {
               />
             </div>
             <div className="mb-5">
-              <label className="mb-3 block text-base font-medium text-[#07074D] text-left" htmlFor="location">
-                Location
-              </label>
-              <input
-                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                type="text"
-                name="location"
-                value={location}
-                onChange={handleChange}
-                required
-              />
+              <GoogleSearchBar location={location} setLocation={setLocation} handleChange={handleChange}/>
             </div>
 
             <div className="mb-5">

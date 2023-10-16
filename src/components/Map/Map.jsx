@@ -11,8 +11,12 @@ export default function Map() {
   return <MakeMap />;
 }
 
+let latDeg = 44;
+let lngDeg = -80;
+
+
 function MakeMap() {
-  const center = useMemo(() => ({ lat: 44, lng: -80 }), []);
+  const center = useMemo(() => ({ lat: latDeg, lng: lngDeg }), []);
 
   return (
     <GoogleMap

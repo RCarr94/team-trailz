@@ -2,7 +2,8 @@ import { usePlacesWidget } from 'react-google-autocomplete';
 import { useState } from 'react';
 
 
-export default function GoogleSearchBar({ location, setLocation, handleChange }) {
+
+export default function GoogleSearchBar({ location, setLocation, handleChange, setLatitude, setLongitude }) {
   const [inputLocation, setInputLocation] = useState(location);
 
   const { ref: materialRef } = usePlacesWidget({
@@ -16,6 +17,8 @@ export default function GoogleSearchBar({ location, setLocation, handleChange })
       if (place.geometry && place.geometry.location) {
         console.log('Latitude:', place.geometry.location.lat());
         console.log('Longitude:', place.geometry.location.lng());
+        setLatitude(place.geometry.location.lat());
+        setLongitude(place.geometry.location.lng());
       }
     },
     options: {

@@ -20,6 +20,8 @@ const defaultState = {
 export default function CreateTrailPage({ trailItems, setTrailItems }) {
   const [formData, setFormData] = useState(defaultState);
   const [location, setLocation] = useState('');
+  const [latitude, setLatitude] = useState(null);
+  const [longitude, setLongitude] = useState(null);
   const navigate = useNavigate();
 
   
@@ -31,7 +33,7 @@ export default function CreateTrailPage({ trailItems, setTrailItems }) {
     evt.preventDefault();
     
       try {
-        const data = { ...formData, location };
+        const data = { ...formData, location, latitude, longitude };
         const newTrail = await create(data);
 
         setTrailItems([...trailItems, newTrail]);
@@ -89,7 +91,7 @@ export default function CreateTrailPage({ trailItems, setTrailItems }) {
               />
             </div>
             <div className="mb-5">
-              <GoogleSearchBar location={location} setLocation={setLocation} handleChange={handleChange}/>
+              <GoogleSearchBar location={location} setLocation={setLocation} handleChange={handleChange} setLatitude={setLatitude} setLongitude={setLongitude} />
             </div>
 
             <div className="mb-5">

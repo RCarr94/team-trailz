@@ -1,4 +1,36 @@
 .map-container {
-  height: 50vh;
-  width: 50%;
+  height: 14rem;
+  width: 100%; /* Make the width 100% to fit the container's width */
+
+  @media (min-width: 640px) {
+    /* Adjust the height and width for screens wider than 640px (sm) */
+    height: 24rem;
+    max-width: 600px; /* You can use 'max-width' to limit the width for larger screens */
+  }
+
+  @media (min-width: 768px) {
+    /* Further adjustments for screens wider than 768px (md) */
+    height: 30rem;
+    max-width: 800px;
+  }
+
+  @media (min-width: 1024px) {
+    /* Adjustments for screens wider than 1024px (lg) */
+    height: 36rem;
+    max-width: 1024px;
+  }
+
+  @media (min-width: 1280px) {
+    /* Adjustments for screens wider than 1280px (xl) */
+    height: 42rem;
+    max-width: 1280px;
+  }
+
+  @media (min-width: 1536px) {
+    /* Adjustments for screens wider than 1536px (2xl) */
+    height: 48rem;
+    max-width: 1536px;
+  }
+
+  /* You can add more media queries for larger screens as needed */
 }

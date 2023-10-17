@@ -15,10 +15,19 @@ async function getById(req, res) {
 
 async function create(req, res) {
   try {
-    const trail = await Trail.create(req.body);
-    res.json(trail);
+    const { trailName, location } = req.body;
+    const existingTrail = await Trail.findOne({ trailName, location });
+
+    if (existingTrail) {
+      throw new Error('Trail already exists!');
+    }
+
+    const newTrail = await Trail.create(req.body);
+
+    res.json(newTrail);
   } catch(err) {
-    res.status(400).json(err);
+    console.log(err.message);
+    res.status(400).json({ error: err.message || 'Trail creation failed' });  
   }
 }
 

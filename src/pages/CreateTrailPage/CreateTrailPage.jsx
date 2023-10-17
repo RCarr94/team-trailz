@@ -13,7 +13,6 @@ const defaultState = {
   length: '',
   description: '',
   image: '',
-  error: ''
 }
 
 
@@ -25,7 +24,7 @@ export default function CreateTrailPage({ trailItems, setTrailItems }) {
   const navigate = useNavigate();
 
   
-  const { trailName, difficulty, length, description } = formData;
+  const { trailName, difficulty, length, description, error } = formData;
 
 
 
@@ -42,8 +41,9 @@ export default function CreateTrailPage({ trailItems, setTrailItems }) {
       } catch (err) {
         setFormData({
           ...formData,
-          error: 'Trail creation failed - Try again!'
+          error: err.message || "Trail creation failed. Please try again.",
         });
+        console.log(err.message)
       }
 
   }
@@ -173,6 +173,7 @@ export default function CreateTrailPage({ trailItems, setTrailItems }) {
             >
               Add Trail
             </button>
+            {error && <p className="text-red-500">&nbsp;{error}</p>}
           </form>
         </div>
       </div>

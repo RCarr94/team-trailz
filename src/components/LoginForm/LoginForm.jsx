@@ -65,7 +65,7 @@ export default function LoginForm({ setUser }) {
                 Email
               </label>
               <input
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-green-500"
                 type="text"
                 name="email"
                 id="email"
@@ -79,7 +79,7 @@ export default function LoginForm({ setUser }) {
                 Password
               </label>
               <input
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-green-500"
                 type="password"
                 name="password"
                 id="password"
@@ -89,7 +89,7 @@ export default function LoginForm({ setUser }) {
               />
             </div>
             <button
-              className="w-full bg-green-800 text-white text-sm font-bold py-2 px-4 rounded-md hover:bg-indigo-600 transition duration-300"
+              className="w-full bg-green-800 text-white text-sm font-bold py-2 px-4 rounded-md hover:cursor-pointer transition duration-300"
               type="submit"
               disabled={disabled}
             >

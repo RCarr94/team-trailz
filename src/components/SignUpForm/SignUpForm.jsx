@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { signUp } from '../../utilities/services/users'
 import { Navigate, Link } from 'react-router-dom'
+import { validateEmail } from '../../utilities/services/users'
 
 const defaultState = {
     name: '',
@@ -23,18 +24,13 @@ export default function SignUpForm({ setUser }){
     if (isLoggedIn) return <Navigate to="/" />;
 
     const handleSubmit = async (e) =>{
-        // when we submit we basically just grab whatever we have in
-        // the state.
         e.preventDefault();
 
         try{
             const { name, password, email } = formData;
             const data = {name, password, email}
-
+            checkEmail();
             const user = await signUp(data)
-            // as soon as we get the decoded data from the creat account api call
-            // (derived fromt he jwt in local storage), we can update app.js to store
-            // user in state
             setUser(user)
             setIsLoggedIn(true)
         }catch (err) {
@@ -63,6 +59,14 @@ export default function SignUpForm({ setUser }){
         setFormData(newFormData);
     }
 
+    function checkEmail() {
+      if (validateEmail(email)) {
+    } else {
+        console.log('Invalid email address format');
+        throw new Error('Invalid email address format');
+    }
+    }
+
     const disabled = (password !== confirm) || !name || !email || !password || !confirm
 
     return (
@@ -75,7 +79,7 @@ export default function SignUpForm({ setUser }){
                 Name
               </label>
               <input
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-green-500"
                 type="text"
                 name="name"
                 id="name"
@@ -89,7 +93,7 @@ export default function SignUpForm({ setUser }){
                 Email
               </label>
               <input
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-green-500"
                 type="text"
                 name="email"
                 id="email"
@@ -103,7 +107,7 @@ export default function SignUpForm({ setUser }){
                 Password
               </label>
               <input
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-green-500"
                 type="password"
                 name="password"
                 id="password"
@@ -117,7 +121,7 @@ export default function SignUpForm({ setUser }){
                 Confirm Password
               </label>
               <input
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-green-500"
                 type="password"
                 name="confirm"
                 id="confirm"
@@ -127,7 +131,7 @@ export default function SignUpForm({ setUser }){
               />
             </div>
             <button
-              className="w-full bg-green-800 text-white text-sm font-bold py-2 px-4 rounded-md hover:bg-indigo-600 transition duration-300"
+              className="w-full bg-green-800 text-white text-sm font-bold py-2 px-4 rounded-md hover:cursor-pointer transition duration-300"
               type="submit"
               disabled={disabled}
             >
@@ -136,9 +140,9 @@ export default function SignUpForm({ setUser }){
             <span className='text-sm'>
               Already have an account? &nbsp;<Link className='text-green-800' to="/signin">Sign In</Link>
             </span>
+           {error && <p className="text-red-500">&nbsp;{error}</p>}
           </form>
         </div>
-        {error && <p className="text-red-500">&nbsp;{error}</p>}
       </div>
     );
 }

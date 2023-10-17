@@ -18,11 +18,12 @@ export default function HomePage({ trailItems, setTrailItems }) {
       setFilteredData(trails);
     }
     getTrails();
-  }, []);
+  }, [setTrailItems]);
 
 
   return (
     <>
+      <h1 className="text-3xl text-center">Trails</h1>
       <div className="w-1/2 mx-auto">
         <SearchFilter trailItems={trailItems} setFilteredData={setFilteredData}/>
       </div>

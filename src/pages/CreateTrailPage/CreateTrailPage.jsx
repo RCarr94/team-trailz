@@ -1,10 +1,14 @@
 import { useState } from 'react';
 import { create } from '../../utilities/api/trails';
+import { useNavigate } from 'react-router-dom';
 import './CreateTrailPage.css';
+
+import GoogleSearchBar from '../../components/GoogleSearchBar/GoogleSearchBar';
+
+
 
 const defaultState = {
   trailName: '',
-  location: '',
   difficulty: '',
   length: '',
   description: '',
@@ -13,27 +17,35 @@ const defaultState = {
 }
 
 
-export default function CreateTrailPage({ trailItems, setTrailItems, trailTestItems }) {
+export default function CreateTrailPage({ trailItems, setTrailItems }) {
   const [formData, setFormData] = useState(defaultState);
+  const [location, setLocation] = useState('');
+  const [latitude, setLatitude] = useState(null);
+  const [longitude, setLongitude] = useState(null);
+  const navigate = useNavigate();
+
   
-  const { trailName, location, difficulty, length, description, image, error } = formData;
-  
+  const { trailName, difficulty, length, description, image, error } = formData;
+
+
+
   async function handleSubmit(evt) {
     evt.preventDefault();
-  
-    try {
-      // const newTrail = { trailName, location, difficulty, length, description, image };
-      const data = { trailName, location, difficulty, length, description, image };
-      const newTrail = await create(data);
+    
+      try {
+        const data = { ...formData, location, latitude, longitude };
+        const newTrail = await create(data);
 
-      setTrailItems([...trailItems, newTrail]);
-      setFormData(defaultState);
-    } catch (err) {
-      setFormData({
-        ...formData,
-        error: 'Trail creation failed - Try again!'
-      });
-    }
+        setTrailItems([...trailItems, newTrail]);
+        setFormData(defaultState);
+        navigate('/');
+      } catch (err) {
+        setFormData({
+          ...formData,
+          error: 'Trail creation failed - Try again!'
+        });
+      }
+
   }
   
     function handleChange(evt) {
@@ -43,6 +55,20 @@ export default function CreateTrailPage({ trailItems, setTrailItems, trailTestIt
         error: ''
       };
       setFormData(newFormData);
+    }
+
+    function handleImgChange(evt) {
+      const reader = new FileReader();
+    
+      reader.onload = function (evt) {
+        const newFormData = {
+          ...formData,
+          image: evt.target.result,
+          error: ''
+        };
+        setFormData(newFormData);
+      };
+      reader.readAsDataURL(evt.target.files[0]);
     }
 
   return (
@@ -65,17 +91,7 @@ export default function CreateTrailPage({ trailItems, setTrailItems, trailTestIt
               />
             </div>
             <div className="mb-5">
-              <label className="mb-3 block text-base font-medium text-[#07074D] text-left" htmlFor="location">
-                Location
-              </label>
-              <input
-                className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                type="text"
-                name="location"
-                value={location}
-                onChange={handleChange}
-                required
-              />
+              <GoogleSearchBar location={location} setLocation={setLocation} handleChange={handleChange} setLatitude={setLatitude} setLongitude={setLongitude} />
             </div>
 
             <div className="mb-5">
@@ -101,8 +117,8 @@ export default function CreateTrailPage({ trailItems, setTrailItems, trailTestIt
                   className="rounded border-[#e0e0e0] py-2 pr-36 text-base font-medium text-[#07074D]"
                   type="file"
                   name="image"
-                  value={image}
-                  onChange={handleChange}
+                  accept='image/*'
+                  onChange={handleImgChange}
                 />
               </div>
             </div>
@@ -116,7 +132,9 @@ export default function CreateTrailPage({ trailItems, setTrailItems, trailTestIt
                 name="difficulty"
                 value={difficulty}
                 onChange={handleChange}
+                required
               >
+                <option value="" disabled hidden>Select a difficulty</option>
                 <option value="easy">Easy</option>
                 <option value="average">Average</option>
                 <option value="challenging">Challenging</option>

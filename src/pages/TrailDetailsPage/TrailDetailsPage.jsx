@@ -1,6 +1,7 @@
-import { getById } from '../../utilities/api/trails';
+
 import { useParams } from 'react-router-dom';
 import Map from '../../components/Map/Map';
+import { capitalizeFirstLetter } from '../../utilities/services/trails';
 
 export default function TrailDetailsPage({ trailItems }) {
 const { trailId } = useParams();
@@ -9,7 +10,7 @@ const trail = trailItems.find(trail => trail._id === trailId);
 
   return (
     <>
-      <div class="md:flex items-start justify-center py-12 2xl:px-20 md:px-6 px-4">
+      <div className="md:flex items-start justify-center py-12 2xl:px-20 md:px-6 px-4">
         <aside className="w-1/2">
           <div className="w-full h-full md:block hidden border-4 border-black">
             <img alt="image of trail" src={trail.image} />
@@ -41,7 +42,7 @@ const trail = trailItems.find(trail => trail._id === trailId);
           <div className="py-4 border-b border-gray-200 flex items-center justify-between">
             <p className="text-base leading-4 text-gray-800 dark:text-gray-300">Difficulty</p>
             <div className="flex items-center justify-center">
-              <p className="text-sm leading-none text-gray-600 dark:text-gray-300 mr-3">{trail.difficulty}</p>
+              <p className="text-sm leading-none text-gray-600 dark:text-gray-300 mr-3">{capitalizeFirstLetter(trail.difficulty)}</p>
             </div>
           </div>
 

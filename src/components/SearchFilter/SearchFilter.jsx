@@ -10,8 +10,12 @@ export default function SearchFilter({ trailItems, setFilteredData }) {
     const query = evt.target.value.toLowerCase();
     setSearchTrails(query);
 
-    const filteredResults = trailItems.filter(trail => 
-      trail.name.toLowerCase().includes(query.toLowerCase()) || trail.location.toLowerCase().includes(query)
+    const filteredResults = trailItems.filter(
+      (trail) =>
+        trail.trailName.toLowerCase().includes(query.toLowerCase()) ||
+        trail.location.toLowerCase().includes(query) ||
+        trail.length.toString().includes(query) ||
+        trail.difficulty.toLowerCase().includes(query)
     );
     setFilteredData(filteredResults);
   }

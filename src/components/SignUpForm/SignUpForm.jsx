@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { signUp } from '../../utilities/services/users'
-import { Navigate } from 'react-router-dom'
+import { Navigate, Link } from 'react-router-dom'
 
 const defaultState = {
     name: '',
@@ -68,74 +68,77 @@ export default function SignUpForm({ setUser }){
     return (
       <div className="bg-gray-100">
         <div className="container mx-auto py-8">
-          <h1 className="text-2xl font-bold mb-6 text-center">Register</h1>
-            <form className="w-full max-w-sm mx-auto bg-white p-8 rounded-md shadow-md" onSubmit={handleSubmit} autoComplete="off">
-                <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
-                    Name
-                    </label>
-                    <input
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
-                    type="text"
-                    name="name"
-                    id="name"
-                    value={name}
-                    onChange={handleChange}
-                    required
-                    />
-                </div>
-                <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
-                    Email
-                    </label>
-                    <input
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
-                    type="text"
-                    name="email"
-                    id="email"
-                    value={email}
-                    onChange={handleChange}
-                    required
-                    />
-                </div>
-                <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
-                    Password
-                    </label>
-                    <input
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
-                    type="password"
-                    name="password"
-                    id="password"
-                    value={password}
-                    onChange={handleChange}
-                    required
-                    />
-                </div>
-                <div className="mb-4">
-                    <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="confirm">
-                    Confirm Password
-                    </label>
-                    <input
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
-                    type="password"
-                    name="confirm"
-                    id="confirm"
-                    value={confirm}
-                    onChange={handleChange}
-                    required
-                    />
-                </div>
-                <button
-                className="w-full bg-indigo-500 text-white text-sm font-bold py-2 px-4 rounded-md hover:bg-indigo-600 transition duration-300"
-                type="submit"
-                disabled={disabled}
-                >
-                Sign up
-                </button>
-            </form>
+          <form className="w-full max-w-sm mx-auto bg-white p-8 rounded-md shadow-md" onSubmit={handleSubmit} autoComplete="off">
+            <h1 className="text-2xl font-bold mb-6 text-center text-green-800">Register</h1>
+            <div className="mb-4">
+              <label className="block text-green-800 text-sm font-bold mb-2" htmlFor="name">
+                Name
+              </label>
+              <input
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+                type="text"
+                name="name"
+                id="name"
+                value={name}
+                onChange={handleChange}
+                required
+              />
             </div>
-            {error && <p className="text-red-500">&nbsp;{error}</p>}
+            <div className="mb-4">
+              <label className="block text-green-800 text-sm font-bold mb-2" htmlFor="email">
+                Email
+              </label>
+              <input
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+                type="text"
+                name="email"
+                id="email"
+                value={email}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-green-800 text-sm font-bold mb-2" htmlFor="password">
+                Password
+              </label>
+              <input
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+                type="password"
+                name="password"
+                id="password"
+                value={password}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-green-800 text-sm font-bold mb-2" htmlFor="confirm">
+                Confirm Password
+              </label>
+              <input
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+                type="password"
+                name="confirm"
+                id="confirm"
+                value={confirm}
+                onChange={handleChange}
+                required
+              />
+            </div>
+            <button
+              className="w-full bg-green-800 text-white text-sm font-bold py-2 px-4 rounded-md hover:bg-indigo-600 transition duration-300"
+              type="submit"
+              disabled={disabled}
+            >
+              Sign up
+            </button>
+            <span className='text-sm'>
+              Already have an account? &nbsp;<Link className='text-green-800' to="/signin">Sign In</Link>
+            </span>
+          </form>
         </div>
+        {error && <p className="text-red-500">&nbsp;{error}</p>}
+      </div>
     );
 }

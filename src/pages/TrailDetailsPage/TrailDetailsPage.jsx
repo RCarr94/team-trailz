@@ -13,7 +13,7 @@ const trail = trailItems.find(trail => trail._id === trailId);
       <div className="md:flex items-start justify-center py-12 2xl:px-20 md:px-6 px-4">
         <aside className="w-1/2">
           <div className="w-full h-full md:block hidden border-4 border-black">
-            <img alt="image of trail" src={trail.image} />
+            <img alt="trail" src={trail.image} />
           </div>
           <div className="w-full md:block hidden">
               <Map trailLat={trail.latitude} trailLng={trail.longitude} />

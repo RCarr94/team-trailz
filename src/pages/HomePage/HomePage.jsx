@@ -8,7 +8,7 @@ import SearchFilter from "../../components/SearchFilter/SearchFilter";
 
 
 
-export default function HomePage({ trailItems, setTrailItems }) {
+export default function HomePage({ trailItems, setTrailItems, user }) {
   const [filteredData, setFilteredData] = useState(trailItems);
 
   useEffect(function () {
@@ -18,12 +18,17 @@ export default function HomePage({ trailItems, setTrailItems }) {
       setFilteredData(trails);
     }
     getTrails();
-  }, []);
+  }, [setTrailItems]);
 
 
   return (
     <>
-      <div className="w-1/2 mx-auto">
+      { user ?
+      <h1 className="text-3xl text-center mb-8">Hey there, {user.name}!</h1>
+      :
+      <h1 className="text-2xl text-center mb-8">Welcome to TeamTrailz!</h1>
+      }
+      <div className="w-1/2 mx-auto mb-8">
         <SearchFilter trailItems={trailItems} setFilteredData={setFilteredData}/>
       </div>
         <TrailList trailItems={filteredData} />

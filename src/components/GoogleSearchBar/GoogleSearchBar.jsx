@@ -31,22 +31,23 @@ export default function GoogleSearchBar({ location, setLocation, handleChange, s
   
   return (
     <>
-    <label className="mb-3 block text-base font-medium text-[#07074D] text-left" htmlFor="location">
-      Location
-    </label>
-    <input
-      className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-      type="text"
-      name="location"
-      value={inputLocation}
-      onChange={(e) => {setInputLocation(e.target.value);
-        setLocation(e.target.value);
-        handleChange(e);
-      }}
-      ref={materialRef}
-      autoComplete='on'
-      required
-    />
+      <label className="mb-3 block text-base font-medium text-green-800 text-left" htmlFor="location">
+        Location
+      </label>
+      <input
+        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-green-700 focus:shadow-md"
+        type="text"
+        name="location"
+        value={inputLocation}
+        onChange={(e) => {
+          setInputLocation(e.target.value);
+          setLocation(e.target.value);
+          handleChange(e);
+        }}
+        ref={materialRef}
+        autoComplete="on"
+        required
+      />
     </>
   );
 }

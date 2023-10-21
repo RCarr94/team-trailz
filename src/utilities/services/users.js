@@ -48,4 +48,11 @@ export function logOut(){
     window.localStorage.removeItem('token')
 }
 
+export function validateEmail(email) {
+  // Regular expression to match email addresses ending with .ca or .com
+  const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.(ca|com)$/;
+
+  return emailPattern.test(email);
+}
+
 

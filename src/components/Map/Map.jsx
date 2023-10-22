@@ -5,7 +5,7 @@ import './Map.css';
 export default function Map({ trailLat, trailLng}) {
 
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API,
+    googleMapsApiKey: 'AIzaSyDVRXAWPrWRiy9bqP5di-gTkYjrhW940ec',
   });
 
   if (!isLoaded) return <div>Loading...</div>

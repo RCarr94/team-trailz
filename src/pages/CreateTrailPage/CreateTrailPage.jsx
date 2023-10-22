@@ -22,7 +22,6 @@ export default function CreateTrailPage({ trailItems, setTrailItems }) {
   const [longitude, setLongitude] = useState(null);
   const navigate = useNavigate();
 
-  
   const { trailName, difficulty, length, description, error } = formData;
 
 

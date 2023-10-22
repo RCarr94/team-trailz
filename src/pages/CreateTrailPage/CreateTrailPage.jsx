@@ -6,7 +6,6 @@ import './CreateTrailPage.css';
 import GoogleSearchBar from '../../components/GoogleSearchBar/GoogleSearchBar';
 
 
-
 const defaultState = {
   trailName: '',
   difficulty: '',

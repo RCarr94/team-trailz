@@ -30,7 +30,7 @@ export default function CreateTrailPage({ trailItems, setTrailItems }) {
 
 
   const { ref: materialRef } = usePlacesWidget({
-    apiKey: process.env.REACT_APP_GOOGLE_MAP_API,
+    apiKey: 'AIzaSyDVRXAWPrWRiy9bqP5di-gTkYjrhW940ec',
     onPlaceSelected: (place) => {
       console.log('Selected Place:', place);
       if (place.formatted_address) {

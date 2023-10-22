@@ -1,13 +1,12 @@
 import { usePlacesWidget } from 'react-google-autocomplete';
-import { useState } from 'react';
-
+import { useState, useEffect } from 'react';
 
 
 export default function GoogleSearchBar({ location, setLocation, handleChange, setLatitude, setLongitude }) {
   const [inputLocation, setInputLocation] = useState(location);
 
   const { ref: materialRef } = usePlacesWidget({
-    apiKey: 'AIzaSyDVRXAWPrWRiy9bqP5di-gTkYjrhW940ec',
+    // apiKey: 'AIzaSyDVRXAWPrWRiy9bqP5di-gTkYjrhW940ec',
     onPlaceSelected: (place) => {
       console.log('Selected Place:', place);
       if (place.formatted_address) {

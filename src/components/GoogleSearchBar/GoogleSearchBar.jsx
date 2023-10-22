@@ -6,7 +6,8 @@ export default function GoogleSearchBar({ location, setLocation, handleChange, s
   const [inputLocation, setInputLocation] = useState(location);
 
   const { ref: materialRef } = usePlacesWidget({
-    // apiKey: 'AIzaSyDVRXAWPrWRiy9bqP5di-gTkYjrhW940ec',
+    apiKey: 'AIzaSyDVRXAWPrWRiy9bqP5di-gTkYjrhW940ec',
+    libraries: ['places'],
     onPlaceSelected: (place) => {
       console.log('Selected Place:', place);
       if (place.formatted_address) {

@@ -1,8 +1,8 @@
 # **TeamTrailz**
 
-## **[TeamTrailz Page](https://team-trailz-e41981a5de26.herokuapp.com/)**
+## **[TeamTrailz Page](https://team-trailz-e41981a5de26.herokuapp.com/){:target="_blank"}**
 
-## [TeamTrailz Trello](https://trello.com/b/LXTcGWGX/team-trailz)
+## [TeamTrailz Trello](https://trello.com/b/LXTcGWGX/team-trailz){:target="_blank"}
 
 TeamTrailz mission is simple: to connect and inspire fellow nature enthusiasts by sharing our favourite trails, one step at a time.
 

@@ -7,7 +7,7 @@ export default function TrailDetailsPage({ trailItems, user }) {
 const { trailId } = useParams();
 
 const trail = trailItems.find(trail => trail._id === trailId);
-console.log(trail);
+
 
   return (
     <>

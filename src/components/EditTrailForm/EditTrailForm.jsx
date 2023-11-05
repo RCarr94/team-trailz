@@ -48,7 +48,6 @@ export default function EditTrailForm({ trailItems, setTrailItems }) {
       const updatedTrail = await update(id, formData);
       const updatedTrailItems = trailItems.map((trail) => {
         if (trail._id === updatedTrail._id) {
-          console.log(updatedTrail._id);
           return updatedTrail;
         }
         return trail;

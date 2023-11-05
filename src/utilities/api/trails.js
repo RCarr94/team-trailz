@@ -11,3 +11,7 @@ export function getById(id) {
 export function create(trailData) {
   return sendRequest(BASE_URL, 'POST', trailData);
 }
+
+export function update(id, trailData) {
+  return sendRequest(`${BASE_URL}/${id}`, 'PUT', trailData);
+}

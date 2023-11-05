@@ -1,15 +1,21 @@
-
+import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import Map from '../../components/Map/Map';
 import { capitalizeFirstLetter } from '../../utilities/services/trails';
 
-export default function TrailDetailsPage({ trailItems }) {
+export default function TrailDetailsPage({ trailItems, user }) {
 const { trailId } = useParams();
 
 const trail = trailItems.find(trail => trail._id === trailId);
 
+
   return (
     <>
+      {user && trail.user == user._id ? (
+      <div>
+        <Link to={`/edit/${trailId}`}><button>EDIT</button> </Link>
+      </div>
+      ) : null}
       <div className="md:flex items-start justify-center py-12 2xl:px-20 md:px-6 px-4">
         <aside className="sm:w-full md:w-1/2">
           <div className="w-full h-full border-4 border-black">

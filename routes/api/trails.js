@@ -10,4 +10,6 @@ router.get('/:id', trailsCtrl.getById);
 
 router.post('/', ensureLoggedIn, trailsCtrl.create);
 
+router.put('/:id', ensureLoggedIn, trailsCtrl.update);
+
 module.exports = router;

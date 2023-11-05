@@ -41,7 +41,7 @@ export default function App() {
               <Route path="/register" element={<Navigate to={'/'} />} />
             </>
           }
-          <Route path="/trails/:trailId" element={<TrailDetailsPage trailItems={trailItems} />} />
+          <Route path="/trails/:trailId" element={<TrailDetailsPage trailItems={trailItems} user={user} />} />
           <Route
             path="/trails/new"
             element={<CreateTrailPage trailItems={trailItems} setTrailItems={setTrailItems} />}

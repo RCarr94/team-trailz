@@ -15,6 +15,7 @@ async function getById(req, res) {
 
 async function create(req, res) {
   try {
+    req.body.user = req.user._id;
     const { trailName, location } = req.body;
     const existingTrail = await Trail.findOne({ trailName, location });
 

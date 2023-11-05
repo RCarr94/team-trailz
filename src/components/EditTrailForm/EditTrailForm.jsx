@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { update } from '../../utilities/api/trails';
 
 export default function EditTrailForm({ trailItems, setTrailItems }) {
   const { id } = useParams();
-  console.log('ID:', id);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     trailName: '',
     difficulty: '',
@@ -45,8 +45,7 @@ export default function EditTrailForm({ trailItems, setTrailItems }) {
   async function handleSubmit(evt) {
     evt.preventDefault();
     try {
-      const res = await update(id, formData);
-      const updatedTrail = await res.json();
+      const updatedTrail = await update(id, formData);
       const updatedTrailItems = trailItems.map((trail) => {
         if (trail._id === updatedTrail._id) {
           console.log(updatedTrail._id);
@@ -55,6 +54,7 @@ export default function EditTrailForm({ trailItems, setTrailItems }) {
         return trail;
       });
       setTrailItems(updatedTrailItems);
+      navigate(`/trails/${id}`);
     } catch (error) {
       console.log(error);
     }

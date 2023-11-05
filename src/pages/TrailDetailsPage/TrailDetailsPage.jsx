@@ -13,7 +13,7 @@ console.log(trail);
     <>
       {user && trail.user == user._id ? (
       <div>
-        <Link to={`/${trailId}/edit`}><button>EDIT</button> </Link>
+        <Link to={`/edit/${trailId}`}><button>EDIT</button> </Link>
       </div>
       ) : null}
       <div className="md:flex items-start justify-center py-12 2xl:px-20 md:px-6 px-4">

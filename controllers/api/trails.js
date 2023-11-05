@@ -32,9 +32,19 @@ async function create(req, res) {
   }
 }
 
+async function updateTrail(req, res) {
+  try {
+    const updatedTrail = await Trail.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.status(200).json(updatedTrail);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to update trail' });
+  }
+}
+
 
 module.exports = {
   index, 
   getById,
-  create
+  create,
+  update: updateTrail
 }

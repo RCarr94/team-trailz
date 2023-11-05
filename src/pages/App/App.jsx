@@ -7,12 +7,14 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import NavBar from '../../components/NavBar/NavBar';
 import LoginForm from '../../components/LoginForm/LoginForm';
 import SignUpForm from '../../components/SignUpForm/SignUpForm';
+import EditTrailForm from '../../components/EditTrailForm/EditTrailForm';
 
 // Pages
 import HomePage from '../HomePage/HomePage';
 import AboutPage from '../AboutPage/AboutPage';
 import TrailDetailsPage from '../TrailDetailsPage/TrailDetailsPage';
 import CreateTrailPage from '../CreateTrailPage/CreateTrailPage';
+
 
 // Helpers
 import { getUser } from '../../utilities/services/users';
@@ -46,6 +48,7 @@ export default function App() {
             path="/trails/new"
             element={<CreateTrailPage trailItems={trailItems} setTrailItems={setTrailItems} />}
           />
+          <Route path='/edit/:id' element={<EditTrailForm trailItems={trailItems} setTrailItems={setTrailItems} />} />
         </Routes>
       </>
     </main>
